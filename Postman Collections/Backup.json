@@ -1,0 +1,519 @@
+{
+	"info": {
+		"_postman_id": "86144daf-78ad-468e-9bb0-e2c5780ef80a",
+		"name": "Pet Store",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Pet Controller",
+			"item": [
+				{
+					"name": "POST /pet",
+					"item": [
+						{
+							"name": "Create a pet",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "0a3415e1-5b9e-4ecc-a343-33bad52cee40",
+										"exec": [
+											"// let response = pm.response.text().replace(/([^\"\\w-])([-0-9.]{8,100})([^\"\\w-])/g, '$1\\\"$2\\\"$3');",
+											"// let jsonData = JSON.parse(response);",
+											"// let id = jsonData.id.replace('\"',''); ",
+											"",
+											"// console.log(\"Pet id is \" + id);",
+											"",
+											"// pm.environment.set(\"petId\", id);",
+											"",
+											"// pm.test(\"Status code is 200\", function () {",
+											"//     pm.response.to.have.status(200);",
+											"// });",
+											"",
+											"// const getPetById = {",
+											"//     url: 'https://petstore.swagger.io/v2/pet/' + pm.environment.get(\"petId\"),",
+											"//     method: 'GET',",
+											"//     header: {",
+											"//         'Content-Type': 'application/json',",
+											"//     },",
+											"// };",
+											"",
+											"// setTimeout(() =>  {",
+											"//     pm.sendRequest(getPetById, (error, response) => {",
+											"//         if (!error) {",
+											"//             pm.test(\"Status code is 200\", function () {",
+											"//                 pm.expect(response.code).to.eql(200);",
+											"//             });",
+											"//         }",
+											"//     });",
+											"// }, 3000);",
+											"",
+											"",
+											"console.log(encodeURIComponent(\"component log @\"))",
+											"console.log(decodeURIComponent(\"component%20log%20%40\"))",
+											"",
+											"var atob = require('atob');",
+											"var btoa = require('btoa');",
+											"",
+											"console.log(atob(\"cG9zdG1hbiB0cmFpbmluZw==\"))",
+											"console.log(btoa(\"postman training\"))"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "5bc2e1d3-6d02-4c33-80b3-cbdaf54b2bbf",
+										"exec": [
+											"// const name = pm.collectionVariables.replaceIn(\"{{$randomFirstName}}\");",
+											"// console.log(name);",
+											"// pm.collectionVariables.set(\"name\", name);"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "408c17d8-9106-444d-8584-0f490580e416",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 102938475,\n  \"category\": {\n    \"id\": 0,\n    \"name\": \"string\"\n  },\n  \"name\": \"doggie\",\n  \"photoUrls\": [\n    \"string\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 0,\n      \"name\": \"string\"\n    }\n  ],\n  \"status\": \"asdasd\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/pet"
+							},
+							"response": []
+						}
+					],
+					"id": "2a579b65-80fe-4a73-8773-3652f77cc951",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "26d5e3a5-3d54-44db-8777-57a3364ac292",
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "e9cce640-f551-4368-90d3-f85bb5f19420",
+								"type": "text/javascript",
+								"packages": {},
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "GET /pet/{petId}",
+					"item": [
+						{
+							"name": "Get pet by id",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"id": "7b80054a-1682-4c4f-b2e4-298816a7cb21",
+										"exec": [
+											"const postPetRequest = {",
+											"    url: 'https://petstore.swagger.io/v2/pet/',",
+											"    method: 'POST',",
+											"    header: {",
+											"        'Content-Type': 'application/json',",
+											"    },",
+											"    body: JSON.stringify({",
+											"        \"id\": 102938475,",
+											"        \"category\": {",
+											"            \"id\": 0,",
+											"            \"name\": \"string\"",
+											"        },",
+											"        \"name\": \"doggie\",",
+											"        \"photoUrls\": [",
+											"            \"string\"",
+											"        ],",
+											"        \"tags\": [",
+											"            {",
+											"            \"id\": 0,",
+											"            \"name\": \"string\"",
+											"            }",
+											"        ],",
+											"        \"status\": \"available\"",
+											"    })",
+											"};",
+											"",
+											"pm.sendRequest(postPetRequest, function (error, response) {",
+											"    let responseText = response.text().replace(/([^\"\\w-])([-0-9.]{8,100})([^\"\\w-])/g, '$1\\\"$2\\\"$3');",
+											"    let jsonData = JSON.parse(responseText);",
+											"    let id = jsonData.id.replace('\"',''); ",
+											"",
+											"    console.log(\"Pet id is \" + id);",
+											"",
+											"    pm.environment.set(\"petId\", id);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"id": "f90f7319-bd5d-4108-b0da-4f5779efad0d",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "c652a978-cb0a-4d63-a117-993b83ff7705",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": "{{baseUrl}}/pet/{{petId}}"
+							},
+							"response": []
+						}
+					],
+					"id": "51bc91dd-c147-4aad-a5b0-0deb2094a33b"
+				},
+				{
+					"name": "GET /pet/findByStatus",
+					"item": [
+						{
+							"name": "Get pets by available status",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "99bac14b-19c5-47b1-a8c1-ac0716318128",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});",
+											"",
+											"// fork",
+											"// conflict"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"id": "4699fefc-a8bb-495d-94f7-fb91642db91f",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/pet/findByStatus?status={{petStatus}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pet",
+										"findByStatus"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "{{petStatus}}"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"id": "d738389f-f983-4042-910a-715589fc8808"
+				},
+				{
+					"name": "POST /pet/{petId}",
+					"item": [
+						{
+							"name": "Update a pet with x-www-urlencoded",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "1dcee9b9-86e4-42f9-9add-ec958a6898f7",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "2a9da177-8171-4a61-83ec-03926c0ff47c",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "name",
+											"value": "updated name from post request",
+											"type": "text",
+											"uuid": "c481fa5c-479d-477b-b245-d7ca903407b9"
+										},
+										{
+											"key": "status",
+											"value": "sold",
+											"type": "text",
+											"uuid": "126c5498-c9c8-4b25-8ef4-2f494ab4f1cd"
+										}
+									]
+								},
+								"url": "{{baseUrl}}/pet/{{petId}}"
+							},
+							"response": []
+						}
+					],
+					"id": "3681f5cb-feb4-4456-8966-2297ad4a75a2"
+				},
+				{
+					"name": "PUT /pet",
+					"item": [
+						{
+							"name": "Update a pet with a body",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4f4aa770-7828-412a-b47f-1fd51e565391",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "8fa064a8-4c97-44d6-af57-e5b96136123d",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"id\": 102938475,\n  \"category\": {\n    \"id\": 0,\n    \"name\": \"string\"\n  },\n  \"name\": \"updated pet name\",\n  \"photoUrls\": [\n    \"string\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 0,\n      \"name\": \"string\"\n    }\n  ],\n  \"status\": \"asdasd\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": "{{baseUrl}}/pet"
+							},
+							"response": []
+						}
+					],
+					"id": "5f999b06-88c3-4aeb-9050-01f2a865ec6c"
+				},
+				{
+					"name": "DELETE /pet/{petId}",
+					"item": [
+						{
+							"name": "Delete pet by id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "94eef4ee-7bb1-42df-9582-e14349d3ffe1",
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"id": "e5014ff4-6c64-4155-b434-feee57bb0c6a",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": "{{baseUrl}}/pet/{{petId}}"
+							},
+							"response": []
+						}
+					],
+					"id": "eb2788a4-400a-4f8a-be4d-2e488968bccc"
+				},
+				{
+					"name": "Pet Store 2",
+					"item": [
+						{
+							"name": "POST /pet",
+							"item": [
+								{
+									"name": "Create a pet",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"id": "a77988a1-992e-4a97-b9c5-f24542ece723",
+												"exec": [
+													"// // console.log(pm.response.json().id);",
+													"",
+													"// let response = pm.response.text().replace(/([^\"\\w-])([-0-9.]{8,100})([^\"\\w-])/g, '$1\\\"$2\\\"$3');",
+													"// let jsonData = JSON.parse(response);",
+													"// let id = jsonData.id.replace('\"',''); ",
+													"",
+													"// console.log(\"Pet id is \" + id);",
+													"",
+													"// pm.collectionVariables.set(\"petId\", id);",
+													"",
+													"console.log(\"collection \" + pm.collectionVariables.get(\"id\"));",
+													"console.log(\"global \" + pm.globals.get(\"id\"));",
+													"console.log(\"environment \" + pm.environment.get(\"id\"));",
+													"console.log(\"variables \" + pm.variables.get(\"id\"));"
+												],
+												"type": "text/javascript",
+												"packages": {}
+											}
+										}
+									],
+									"id": "41aa9a17-4f81-4b64-a918-e96094646627",
+									"protocolProfileBehavior": {
+										"disableBodyPruning": true
+									},
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"id\": 0,\n  \"category\": {\n    \"id\": 0,\n    \"name\": \"string\"\n  },\n  \"name\": \"doggie\",\n  \"photoUrls\": [\n    \"string\"\n  ],\n  \"tags\": [\n    {\n      \"id\": 0,\n      \"name\": \"string\"\n    }\n  ],\n  \"status\": \"asdasd\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": "{{baseUrl}}/pet"
+									},
+									"response": []
+								}
+							],
+							"id": "cd82400d-d57b-4a0a-a03e-2723c714931a"
+						}
+					],
+					"id": "42d4bcab-e0e9-48cd-abd1-c0753827f09f"
+				}
+			],
+			"id": "2aa81e16-2505-43f3-b732-919547e39003",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b44597bf-6f71-4517-84d1-dc048f798ded",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "399dda88-d553-44f0-8ca1-eda98c79bbdc",
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "9e0d7a98-bd8c-4df0-9897-a4a1e78651fc",
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "41d8a688-66d9-4866-a813-9c7f06e106dc",
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": ""
+		},
+		{
+			"key": "email",
+			"value": ""
+		},
+		{
+			"key": "name",
+			"value": ""
+		},
+		{
+			"key": "petStatus",
+			"value": "available"
+		}
+	]
+}
